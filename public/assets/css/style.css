@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@600&family=Kanit:wght@200&display=swap');
+
+.bg-dark {
+    background-color: #c70013 !important;
+}
+
+
+.bg-gray {
+    background-color: rgba(0, 0, 0, 0.61);
+
+}
+
+.card-title {
+    filter: drop-shadow(15px 15px 15px #222);
+
+}
+
+.form-group {
+    margin-top: 10px;
+}
+
+* {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 500;
+}
+
+body {
+    background-color: rgba(0, 0, 0, 0.226);
+
+}
+
+.logo {
+    filter: drop-shadow(5px 5px 5px #222);
+    width: 150px;
+}
+
+.float-right {
+    float: right;
+
+}
+
+.float-right li {
+    border-radius: 50%;
+    border: solid white 2px;
+    margin-left: 10px;
+    padding: 2px 8px;
+}
+
+.font-control {
+    margin-bottom: -10px;
+}
+
+.social_link li a {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 800;
+
+}
+.bg-black{
+    background:#000;
+}
+.mt-in-1{
+    margin-top: -10px;
+}
+.mt-in-2{
+    margin-top: -20px;
+}
+.mt-in-3{
+    margin-top: -15px;
+}
