@@ -207,7 +207,7 @@
             document.getElementById('session').value = new Date().getFullYear() + ' - ' + (parseInt(new Date()
                 .getFullYear()) + session);
         }
-        xmlhttp.open("GET", "/course/" + course);
+        xmlhttp.open("GET",  window.location.href+"course/" + course);
         xmlhttp.send();
     }
 
@@ -242,7 +242,7 @@
 
 
             }
-            xmlhttp.open("GET", "/otp/" + number);
+            xmlhttp.open("GET",  window.location.href+"otp/" + number);
             xmlhttp.send();
             document.getElementById('prospectus_phone').style.borderColor = 'green';
 
