@@ -74,11 +74,11 @@ class EasebuzzController extends Controller
             if ($apiname === "initiate_payment") {
 
                 // getting the all data from the session
-                $amount = session('amount') . '.0';
+              //  $amount = session('amount') . '.0';
 
-                if ($_SERVER['HTTP_HOST'] == '127.0.0.1:8000') {
+            //    if ($_SERVER['HTTP_HOST'] == '127.0.0.1:8000') {
                     $amount =  '1.0';
-                }
+          //      }
 
                 $txn_id = session('txn_id');
                 $student_prospectus_id = session('student_id');
