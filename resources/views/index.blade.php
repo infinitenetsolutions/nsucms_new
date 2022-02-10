@@ -27,8 +27,8 @@
                         </div>
                         <div class="form-group col-md-4 ">
                             <label for="">Select Course</label>
-                            <select id="prospectus_course" onchange="check_semester(this.value)" name="prospectus_course"
-                                class="form-control" required="">
+                            <select id="prospectus_course" onchange="check_semester(this.value)"
+                                name="prospectus_course_name" class="form-control" required="">
                                 <option value="" selected disabled> Select Course </option>
                                 @foreach ($data as $course)
                                     <option value="{{ $course->course_id }}" selected=""> {{ $course->course_name }}
@@ -40,11 +40,12 @@
 
                         <div class="form-group col-md-4">
                             <label for="">Session</label>
-                            <input readonly id="session" class="form-control" name="udf1" value="" placeholder="">
+                            <input readonly id="session" name="prospectus_session" class="form-control" value=""
+                                placeholder="">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Amount</label>
-                            <input readonly id="amount" class="form-control" name="udf1" value="" placeholder="">
+                            <input readonly id="amount" class="form-control" value="" placeholder="">
                         </div>
                     </div>
 
@@ -58,17 +59,17 @@
 
                         <div class="form-group col-md-4">
                             <label for="">Applicant Name</label>
-                            <input id="prospectus_name" name="prospectus_name" class="form-control"
+                            <input id="prospectus_applicant_name" name="prospectus_applicant_name" class="form-control"
                                 placeholder="Enter Name" type="text" required="">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Father's Name</label>
-                            <input id="prospectus_fathers_name" name="prospectus_fathers_name" class="form-control"
+                            <input id="prospectus_fathers_name" name="prospectus_father_name" class="form-control"
                                 placeholder="Father's Name" type="text" required="">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Mother's Name</label>
-                            <input id="prospectus_mothers_name" name="prospectus_mothers_name" class="form-control"
+                            <input id="prospectus_mothers_name" name="prospectus_mother_name" class="form-control"
                                 placeholder="Mother's Name" type="text" required="">
                         </div>
                         <div class="form-group col-md-4">
@@ -134,7 +135,7 @@
 
                         <div class="form-group col-md-4">
                             <label for="">Email Address</label>
-                            <input id="prospectus_email" name="prospectus_email" class="form-control"
+                            <input id="prospectus_email" name="prospectus_emailid" class="form-control"
                                 placeholder="Enter Email" type="email" required="">
                             <small class="form-text text-muted">We'll never share your email with anyone
                                 else.</small>
@@ -142,18 +143,18 @@
 
                         <div class="form-group col-md-4">
                             <label for="">Phone Number</label>
-                            <input id="prospectus_phone" name="prospectus_phone" onkeyup="check_number(this.value)"
-                                class="form-control" placeholder="Enter Phone Number" type="text" maxlength="12"
+                            <input id="prospectus_phone" name="mobile" onkeyup="check_number(this.value)"
+                                class="form-control" placeholder="Enter Phone Number" type="text" maxlength="10"
                                 minlength="10" required="">
-                            <small id="prospectus_phone_err" class="form-text text-muted"></small>
+                            <small id="prospectus_phone_err" class="form-text text-muted text-success"> </small>
                         </div>
 
 
 
                         <div class="form-group col-md-4" id="vaild_otp" style="display: none">
                             <label for="">OTP</label>
-                            <input id="prospectus_otp" name="prospectus_otp" class="form-control"
-                                placeholder="Enter 6 Digit OTP" type="text" maxlength="6" minlength="6">
+                            <input id="prospectus_otp" class="form-control" placeholder="Enter 6 Digit OTP" type="text"
+                                maxlength="6" minlength="6">
                             <small id="prospectus_otp_err" class="form-text text-muted color-orange">Please
                                 Enter Your OTP.</small>
                         </div>
@@ -164,7 +165,8 @@
                 <div class="card p-4 mt-3 mb-3">
                     <div class="row">
                         <div class="col-sm-12 mt-4">
-                            <input type="checkbox" name="" id=""> <span style="color:#3d3c3fe8;"><b> Yes I have read all the
+                            <input type="checkbox" name="" required id=""> <span style="color:#3d3c3fe8;"><b> Yes I have
+                                    read all the
                                     instructions, by clicking the button <a href="" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">Accept & Go</a> </span>
                         </div>
@@ -219,9 +221,7 @@
                 document.getElementById('prospectus_state').value = data[0].PostOffice[0].State
                 document.getElementById('prospectus_city').value = data[0].PostOffice[0].Block
                 document.getElementById('prospectus_country').value = data[0].PostOffice[0].Country
-
                 document.getElementById('prospectus_postal_code').style.borderColor = 'green';
-
             }
             xmlhttp.open("GET", "https://api.postalpincode.in/pincode/" + pincode);
             xmlhttp.send();
@@ -236,8 +236,10 @@
         if (number.length > 9 && number.length < 12) {
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
-
                 document.getElementById('vaild_otp').style.display = 'block';
+                document.getElementById('prospectus_phone_err').innerHTML =
+                    '<span class="text-success">Otp sended on ' + number + '</span>';
+
 
             }
             xmlhttp.open("GET", "/otp/" + number);
