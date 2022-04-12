@@ -74,4 +74,13 @@ class ProspectusController extends Controller
         curl_close($ch);
         return $output;
     }
+
+    function already()
+    {
+        return view('already_prospectus');
+    }
+    function prospectus_check($prospectus_number)
+    {
+        dd($prospectus_number);
+    }
 }

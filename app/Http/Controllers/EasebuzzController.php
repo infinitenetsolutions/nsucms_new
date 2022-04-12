@@ -74,11 +74,11 @@ class EasebuzzController extends Controller
             if ($apiname === "initiate_payment") {
 
                 // getting the all data from the session
-              //  $amount = session('amount') . '.0';
+                $amount = session('amount') . '.0';
 
-            //    if ($_SERVER['HTTP_HOST'] == '127.0.0.1:8000') {
+                if ($_SERVER['HTTP_HOST'] == '127.0.0.1:8000') {
                     $amount =  '1.0';
-          //      }
+                }
 
                 $txn_id = session('txn_id');
                 $student_prospectus_id = session('student_id');
@@ -194,35 +194,40 @@ class EasebuzzController extends Controller
         $result = $easebuzzObj->easebuzzResponse($_POST);
         $result = json_decode($result);
         echo "<pre>";
-        // if($result->data->status=="success"){
-        $net_debited_amount = $result->data->net_amount_debit;
-        $easepayid = $result->data->easepayid;
+        if ($result->data->status == "success") {
+            $net_debited_amount = $result->data->net_amount_debit;
+            $easepayid = $result->data->easepayid;
 
-        $txnid = $result->data->txnid;
-        $prospectus_student_id = $result->data->udf1;
-        $mode = $result->data->mode;
-        $bank_name = $result->data->bank_name;
-        $addedon = $result->data->addedon;
+            $txnid = $result->data->txnid;
+            $prospectus_student_id = $result->data->udf1;
+            $mode = $result->data->mode;
+            $bank_name = $result->data->bank_name;
+            $addedon = $result->data->addedon;
+            session('student_id', $prospectus_student_id);
+            $status = md5('visible');
+            $payment_success = DB::table('tbl_prospectus')->where('id', $prospectus_student_id)->update([
+                'transaction_id' => $txnid,
+                'easebuzz_id' => $easepayid,
+                'bank_name' => $bank_name,
+                'transaction_date' => $addedon,
+                'post_at' => date('Y-m-d h:m:s'),
+                'type' => $mode,
+                'status' => $status,
+                'prospectus_rate' => $net_debited_amount,
+                'transaction_no' => $txnid,
+            ]);
+            if ($payment_success) {
+                redirect()->route('print');
+            }
+            print_r($result->data);
+        } else {
+            redirect()->route('prospectus');
+        }
+    }
 
-        $status = md5('visible');
-        $payment_success = DB::table('tbl_prospectus')->where('id', $prospectus_student_id)->update([
-            'transaction_id' => $txnid,
-            'easebuzz_id' => $easepayid,
-            'bank_name' => $bank_name,
-            'transaction_date' => $addedon,
-            'post_at' => date('Y-m-d h:m:s'),
-            'type' => $mode,
-            'status' => $status,
-            'prospectus_rate' => $net_debited_amount
-        ]);
-
-
-
-        print_r($result->data);
-
-
-        // }else{
-        //     echo "working";
-        // }
+    public function print_form()
+    {
+         $data = DB::table('tbl_prospectus')->find(12);
+        return view('print', ['data' => $data]);
     }
 }
