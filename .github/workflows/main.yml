@@ -14,4 +14,4 @@ jobs:
         server: nsucms.in
         username: prospectus@nsucms.in
         password: ${{ secrets.ftp_password }}
-        
+        # added
