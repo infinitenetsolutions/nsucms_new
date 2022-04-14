@@ -8,7 +8,7 @@ class AdmissionEnquiry extends Controller
 {
     function otp_generating(Request $request)
     {
-        return view('opt_verify');
+        return view('admission_opt_verify');
     }
     function otp_verify(Request $request)
     {

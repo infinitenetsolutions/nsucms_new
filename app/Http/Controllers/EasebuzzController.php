@@ -194,6 +194,8 @@ class EasebuzzController extends Controller
         $result = $easebuzzObj->easebuzzResponse($_POST);
         $result = json_decode($result);
         echo "<pre>";
+        print_r($result->data);
+        echo "<pre>";
         if ($result->data->status == "success") {
             $net_debited_amount = $result->data->net_amount_debit;
             $easepayid = $result->data->easepayid;

@@ -532,3 +532,11 @@ body {
 {
     box-shadow: 4px 3px 37px 0px;
 }
+
+@media only screen and (max-width: 600px) {
+  .social{
+    width: 190px;
+    margin: 0px auto;
+    padding-bottom: 20px;
+  }
+}
