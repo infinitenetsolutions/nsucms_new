@@ -36,3 +36,5 @@ Route::get('print', [EasebuzzController::class, 'print_form'])->name('print');
 Route::post('admission/otp/verification', [AdmissionEnquiry::class, 'otp_generating'])->name('admission.otp_generating');
 Route::post('admission/otp/verify/', [AdmissionEnquiry::class, 'otp_verify'])->name('admission.otp_verify');
 Route::post('admission/admission/form', [AdmissionEnquiry::class, 'admission_form'])->name('admission.admission_form');
+Route::post('admission/admission_document/form', [AdmissionEnquiry::class, 'admission_document'])->name('admission.admission_document');
+Route::get('admission/session/{course_id}', [AdmissionEnquiry::class, 'session_get'])->name('admission.session');

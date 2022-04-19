@@ -63,7 +63,7 @@
                                 <p>Please fill the details below so that you have to go into the next step </p>
                             </div>
                             <div class="input__container">
-                                <form action="{{ route('admission.otp_generating')  }}" method="POST"  >
+                                <form action="{{ route('admission.otp_generating') }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -77,7 +77,12 @@
                                                 name="phone_number" id="">
                                         </div>
                                     </div>
-                                    <button class="nxt__btn mt-2" type="submit" > Next</button>
+                                    <p class="text-danger">
+                                        @if (session()->has('error'))
+                                            {{ session()->get('error') }}
+                                        @endif
+                                    </p>
+                                    <button class="nxt__btn mt-2" type="submit"> Next</button>
 
                                 </form>
                             </div>
@@ -90,60 +95,3 @@
         <!-- end contact -->
     @endslot
 </x-layout>
-<script>
-    function check_semester(course) {
-        console.log(course);
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            data = this.responseText;
-            var data = JSON.parse(data);
-            document.getElementById('amount').value = data[0].prospectus_rate
-            session = data[0].duration;
-            document.getElementById('session').value = new Date().getFullYear() + ' - ' + (parseInt(new Date()
-                .getFullYear()) + session);
-        }
-        xmlhttp.open("GET", window.location.href + "course/" + course);
-        xmlhttp.send();
-    }
-
-    function check_pincode(pincode) {
-        console.log(pincode);
-        if (pincode.length == 6) {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                data = this.responseText;
-                var data = JSON.parse(data);
-                document.getElementById('prospectus_state').value = data[0].PostOffice[0].State
-                document.getElementById('prospectus_city').value = data[0].PostOffice[0].Block
-                document.getElementById('prospectus_country').value = data[0].PostOffice[0].Country
-                document.getElementById('prospectus_postal_code').style.borderColor = 'green';
-            }
-            xmlhttp.open("GET", "https://api.postalpincode.in/pincode/" + pincode);
-            xmlhttp.send();
-        } else {
-            document.getElementById('prospectus_state').value = '';
-            document.getElementById('prospectus_city').value = '';
-            document.getElementById('prospectus_postal_code').style.borderColor = 'red';
-        }
-    }
-
-    function check_number(number) {
-        if (number.length > 9 && number.length < 12) {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                document.getElementById('vaild_otp').style.display = 'block';
-                document.getElementById('prospectus_phone_err').innerHTML =
-                    '<span class="text-success">Otp sended on ' + number + '</span>';
-
-
-            }
-            xmlhttp.open("GET", window.location.href + "otp/" + number);
-            xmlhttp.send();
-            document.getElementById('prospectus_phone').style.borderColor = 'green';
-
-        } else {
-            document.getElementById('prospectus_phone').style.borderColor = 'red';
-
-        }
-    }
-</script>

@@ -45,7 +45,7 @@ class ProspectusController extends Controller
     public function send_otp($mobile_number)
     {
         $otp = rand(100000, 999999);
-        session(['otp' => $otp]);
+        session(['otp' => $otp,'phone'=>$mobile_number]);
         $mobileNumber = $mobile_number;
         $message = "Your OTP is " . $otp . ". Please do not share this OTP to anyone. Regards, Srinath University, JSR";
         $senderId = "SRIUNI";
