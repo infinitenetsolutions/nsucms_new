@@ -72,6 +72,7 @@
                                     <div class="-body table-responsive p-0">
                                         <div class="-body">
                                             <div class="row">
+                                                <input type="hidden" name="id" value="{{ $id }}" id="">
                                                 <div class="col-4">
                                                     <label>10th Marksheet</label>
                                                     <input type="file" name="admission_tenth_marksheet"
@@ -118,12 +119,7 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
-                                    <div class="col-md-12">
-                                        <div id="loader_section"></div>
-                                    </div>
+                        
                                     <div class="col-md-6">
                                         <button type="submit" id="admission_button" class="btn btn-warning">Submit</button>
                                     </div>

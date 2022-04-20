@@ -1,7 +1,7 @@
 <div class=" font-control bg-black">
     <div class="row">
         <div class="col-sm-6">
-            <ul class="list-inline social_link mt-2 d-flex  text-center text-white">
+            <ul class="list-inline social_link mt-2 d-flex font-0  text-center text-white">
                 <li class="m-0 pl-10 pr-10"> <a href="#" class="text-white"><i class="fa fa-phone text-white"></i>
                         1800-8899-022 </a> </li>
                 /<li class="m-0 pl-10 pr-10"> <a href="#" class="text-white"><i class="fa fa-envelope-o text-white "></i> info@nsuniv.ac.in</a></li>

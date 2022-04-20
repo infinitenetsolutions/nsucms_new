@@ -50,37 +50,106 @@ class AdmissionEnquiry extends Controller
 
     function admission_form(Request $request)
     {
-        $admission_id = DB::table('tbl_admission')->insertGetId($request->except('_token'));
-        return view('admission_document');
+
+        $destinationPath = 'https://nsucms.in/nsucms/images/student_images/';
+  
+        $admission_id = DB::table('tbl_admission')->updateOrInsert(['admission_form_no' => session('prospectus_no'), 'admission_mobile_student' => session('mobile')], $request->except('_token','admission_profile_image'));
+        if ($request->file('admission_profile_image')) {
+            $about_image = DB::table('tbl_admission')->where('admission_id', $admission_id)->pluck('admission_profile_image')->first();
+            if ($about_image == null) {
+                $about_image = 'admission_profile_image' . date('Ymdhms') . '.' . $request->file('admission_profile_image')->getClientOriginalExtension();
+                DB::table('tbl_admission')->where('admission_id', $admission_id)->update(['admission_profile_image' => $about_image]);
+            }
+            $image = $request->file('admission_profile_image');
+            $image->move($destinationPath, $about_image);
+        }
+        return view('admission_document', ['id' => $admission_id]);
+
     }
 
-    public function admission_document( Request $request)
+    public function admission_document(Request $request)
     {
+        $destinationPath = 'https://nsucms.in/nsucms/images/student_certificates/';
+        $id = $request->id;
 
-        if ($request->file('header_image')) {
-            $about_image = DB::table('pages')->find($id);
-            $about_image = $about_image->header_image;
-            $image = $request->file('header_image');
-            $destinationPath = 'upload/about/';
+        if ($request->file('admission_tenth_marksheet')) {
+            $about_image = DB::table('tbl_admission')->where('admission_id', $id)->pluck('admission_tenth_marksheet')->first();
+            if ($about_image == null) {
+                $about_image = 'admission_tenth_marksheet' . date('Ymdhms') . '.' . $request->file('admission_tenth_marksheet')->getClientOriginalExtension();
+                DB::table('tbl_admission')->where('admission_id', $id)->update(['admission_tenth_marksheet' => $about_image]);
+            }
+            $image = $request->file('admission_tenth_marksheet');
             $image->move($destinationPath, $about_image);
         }
 
-        if ($request->file('image_name')) {
-            $about_image = DB::table('pages')->find($id);
-            $about_image = $about_image->image_name;
-            $image = $request->file('image_name');
-            $destinationPath = 'upload/about/';
+        if ($request->file('admission_tenth_passing_certificate')) {
+            $about_image = DB::table('tbl_admission')->where('admission_id', $id)->pluck('admission_tenth_passing_certificate')->first();
+            if ($about_image == null) {
+                $about_image = 'admission_tenth_passing_certificate' . date('Ymdhms') . '.' . $request->file('admission_tenth_passing_certificate')->getClientOriginalExtension();
+                DB::table('tbl_admission')->where('admission_id', $id)->update(['admission_tenth_passing_certificate' => $about_image]);
+            }
+            $image = $request->file('admission_tenth_passing_certificate');
             $image->move($destinationPath, $about_image);
         }
-        if ($request->file('image_name1')) {
-            $about_image = DB::table('pages')->find($id);
-            $about_image = $about_image->image_name1;
-            $image = $request->file('image_name1');
-            $destinationPath = 'upload/about/';
+        if ($request->file('admission_twelve_markesheet')) {
+            $about_image = DB::table('tbl_admission')->where('admission_id', $id)->pluck('admission_twelve_markesheet')->first();
+            if ($about_image == null) {
+                $about_image = 'admission_twelve_markesheet' . date('Ymdhms') . '.' . $request->file('admission_twelve_markesheet')->getClientOriginalExtension();
+                DB::table('tbl_admission')->where('admission_id', $id)->update(['admission_twelve_markesheet' => $about_image]);
+            }
+            $image = $request->file('admission_twelve_markesheet');
             $image->move($destinationPath, $about_image);
         }
+        if ($request->file('admission_twelve_passing_certificate')) {
+            $about_image = DB::table('tbl_admission')->where('admission_id', $id)->pluck('admission_twelve_passing_certificate')->first();
+            if ($about_image == null) {
+                $about_image = 'admission_twelve_passing_certificate' . date('Ymdhms') . '.' . $request->file('admission_twelve_passing_certificate')->getClientOriginalExtension();
+                DB::table('tbl_admission')->where('admission_id', $id)->update(['admission_twelve_passing_certificate' => $about_image]);
+            }
+            $image = $request->file('admission_twelve_passing_certificate');
+            $image->move($destinationPath, $about_image);
+        }
+        if ($request->file('admission_graduation_marksheet')) {
+            $about_image = DB::table('tbl_admission')->where('admission_id', $id)->pluck('admission_graduation_marksheet')->first();
+            if ($about_image == null) {
+                $about_image = 'admission_graduation_marksheet' . date('Ymdhms') . '.' . $request->file('admission_graduation_marksheet')->getClientOriginalExtension();
+                DB::table('tbl_admission')->where('admission_id', $id)->update(['admission_graduation_marksheet' => $about_image]);
+            }
+            $image = $request->file('admission_graduation_marksheet');
+            $image->move($destinationPath, $about_image);
+        }
+        if ($request->file('admission_recent_character_certificate')) {
+            $about_image = DB::table('tbl_admission')->where('admission_id', $id)->pluck('admission_recent_character_certificate')->first();
+            if ($about_image == null) {
+                $about_image = 'admission_recent_character_certificate' . date('Ymdhms') . '.' . $request->file('admission_recent_character_certificate')->getClientOriginalExtension();
+                DB::table('tbl_admission')->where('admission_id', $id)->update(['admission_recent_character_certificate' => $about_image]);
+            }
+            $image = $request->file('admission_recent_character_certificate');
+            $image->move($destinationPath, $about_image);
+        }
+        if ($request->file('admission_other_certificate')) {
+            $about_image = DB::table('tbl_admission')->where('admission_id', $id)->pluck('admission_other_certificate')->first();
+            if ($about_image == null) {
+                $about_image = 'admission_other_certificate' . date('Ymdhms') . '.' . $request->file('admission_other_certificate')->getClientOriginalExtension();
+                DB::table('tbl_admission')->where('admission_id', $id)->update(['admission_other_certificate' => $about_image]);
+            }
+            $image = $request->file('admission_other_certificate');
+            $image->move($destinationPath, $about_image);
+        }
+        if ($request->file('admission_character_certificate')) {
+            $about_image = DB::table('tbl_admission')->where('admission_id', $id)->pluck('admission_character_certificate')->first();
+            if ($about_image == null) {
+                $about_image = 'admission_character_certificate' . date('Ymdhms') . '.' . $request->file('admission_character_certificate')->getClientOriginalExtension();
+                DB::table('tbl_admission')->where('admission_id', $id)->update(['admission_character_certificate' => $about_image]);
+            }
+            $image = $request->file('admission_character_certificate');
+            $image->move($destinationPath, $about_image);
+        }
+        return redirect()->route('admission.thankyou');
+    }
 
-        $admission_id = DB::table('tbl_admission')->update($request->except('_token'));
-
+    public function thankyou()
+    {
+        return view('thankyou');
     }
 }

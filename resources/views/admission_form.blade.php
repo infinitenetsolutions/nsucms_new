@@ -71,10 +71,13 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12" id="error_section"></div>
+                                        <input type="hidden" name="approval"  value="not" >
+
+                                        
                                         <div class="col-4">
 
                                             <label>Registration No <span class="text-danger">*</span> </label>
-                                            <input readonly type="text" name="admission_id" value="{{ (DB::table('tbl_admission')->orderBy('admission_id','DESC')->pluck('admission_id')->first())+1 }}"
+                                            <input disabled  type="text" name="admission_id" value="Generated After Admission "
                                                 class="form-control">
                                         </div>
                                         <div class="col-4">
@@ -101,7 +104,7 @@
 
                                         <div class="col-4">
                                             <label>First Name <span class="text-danger">*</span></label>
-                                            <input id="first_name" type="text" name="admission_first_name"
+                                            <input id="first_name" type="text" value="{{ $data->prospectus_applicant_name }}" name="admission_first_name"
                                                 class="form-control" required="">
                                         </div>
 

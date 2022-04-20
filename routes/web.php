@@ -38,3 +38,4 @@ Route::post('admission/otp/verify/', [AdmissionEnquiry::class, 'otp_verify'])->n
 Route::post('admission/admission/form', [AdmissionEnquiry::class, 'admission_form'])->name('admission.admission_form');
 Route::post('admission/admission_document/form', [AdmissionEnquiry::class, 'admission_document'])->name('admission.admission_document');
 Route::get('admission/session/{course_id}', [AdmissionEnquiry::class, 'session_get'])->name('admission.session');
+Route::get('admission/thankyou', [AdmissionEnquiry::class, 'thankyou'])->name('admission.thankyou');
