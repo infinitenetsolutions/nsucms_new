@@ -153,3 +153,4 @@ class AdmissionEnquiry extends Controller
         return view('thankyou');
     }
 }
+// added something comment
