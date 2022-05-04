@@ -45,13 +45,14 @@ class ProspectusController extends Controller
     public function send_otp($mobile_number)
     {
         $otp = rand(100000, 999999);
-        session(['otp' => $otp,'phone'=>$mobile_number]);
+        session(['otp' => $otp, 'phone' => $mobile_number]);
         $mobileNumber = $mobile_number;
-        $message = "Your OTP is " . $otp . ". Please do not share this OTP to anyone. Regards, Srinath University, JSR";
-        $senderId = "SRIUNI";
+        $message = "Your OTP is " . $otp . ". Please do not share this OTP to anyone. Regards, Netaji subhas  University, JSR";
+        $senderId = "NSUJSR";
         $serverUrl = "msg.msgclub.net";
+
         //put the auth key;			
-        $authKey = "fbfdee58a904a1d82641561a74c354";
+        $authKey = "6a4743a8355fb97aa42dc2452185a1cd";
         $routeId = "1";
         $route = "default";
         $getData = 'mobileNos=' . $mobileNumber . '&message=' . urlencode($message) . '&senderId=' . $senderId . '&routeId=' . $routeId;
