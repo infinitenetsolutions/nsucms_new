@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdmissionEnquiry;
 use App\Http\Controllers\EasebuzzController;
+use App\Http\Controllers\EmailSendController;
 use App\Http\Controllers\ProspectusController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +40,7 @@ Route::post('admission/admission/form', [AdmissionEnquiry::class, 'admission_for
 Route::post('admission/admission_document/form', [AdmissionEnquiry::class, 'admission_document'])->name('admission.admission_document');
 Route::get('admission/session/{course_id}', [AdmissionEnquiry::class, 'session_get'])->name('admission.session');
 Route::get('admission/thankyou', [AdmissionEnquiry::class, 'thankyou'])->name('admission.thankyou');
+
+// for email send testing
+
+Route::get('admission/emailsend',[EmailSendController::class,'index']);
