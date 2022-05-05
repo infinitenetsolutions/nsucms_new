@@ -4,6 +4,8 @@ use App\Http\Controllers\AdmissionEnquiry;
 use App\Http\Controllers\EasebuzzController;
 use App\Http\Controllers\EmailSendController;
 use App\Http\Controllers\ProspectusController;
+use App\Mail\mymail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,4 +45,11 @@ Route::get('admission/thankyou', [AdmissionEnquiry::class, 'thankyou'])->name('a
 
 // for email send testing
 
-Route::get('admission/emailsend',[EmailSendController::class,'index']);
+$details = [
+    'title' => 'Mail from ItSolutionStuff.com',
+    'body' => 'This is for testing email using smtp'
+];
+
+Mail::to('rohit83015@gmail.com')->send(new \App\Mail\mymail($details));
+
+dd("Email is Sent.");
