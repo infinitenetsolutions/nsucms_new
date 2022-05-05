@@ -29,6 +29,6 @@ class mymail extends Mailable
     public function build()
     {
         return $this->subject('Mail from nsuniv.ac.in')
-        ->view('emails.demo');
+        ->view('emails.otp');
     }
 }

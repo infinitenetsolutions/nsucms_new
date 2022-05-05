@@ -4,8 +4,6 @@ use App\Http\Controllers\AdmissionEnquiry;
 use App\Http\Controllers\EasebuzzController;
 use App\Http\Controllers\EmailSendController;
 use App\Http\Controllers\ProspectusController;
-use App\Mail\mymail;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 // for prospectus 
 Route::get('/', [ProspectusController::class, 'index'])->name('prospectus');
 Route::post('/store', [ProspectusController::class, 'store'])->name('prospectus');
-Route::get('/otp/{mobile_number}', [ProspectusController::class, 'send_otp'])->name('prospectus.otp');
+Route::get('/otp/{mobile_number}/{email}', [ProspectusController::class, 'send_otp'])->name('prospectus.otp');
 Route::get('/confirmation', [ProspectusController::class, 'confirmation'])->name('prospectus.confirmation');
 Route::get('/course/{id}', [ProspectusController::class, 'course'])->name('prospectus.course');
 Route::get('/already', [ProspectusController::class, 'already'])->name('prospectus.already');
@@ -45,11 +43,5 @@ Route::get('admission/thankyou', [AdmissionEnquiry::class, 'thankyou'])->name('a
 
 // for email send testing
 
-$details = [
-    'title' => 'Mail from ItSolutionStuff.com',
-    'body' => 'This is for testing email using smtp'
-];
 
-Mail::to('rohit83015@gmail.com')->send(new \App\Mail\mymail($details));
 
-dd("Email is Sent.");

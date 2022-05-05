@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 class ProspectusController extends Controller
 {
 
@@ -42,7 +42,7 @@ class ProspectusController extends Controller
 
 
 
-    public function send_otp($mobile_number)
+    public function send_otp($mobile_number,$email)
     {
         $otp = rand(100000, 999999);
         session(['otp' => $otp, 'phone' => $mobile_number]);
@@ -73,6 +73,8 @@ class ProspectusController extends Controller
             echo 'error:' . curl_error($ch);
         }
         curl_close($ch);
+        // sending the email otp into the email
+        Mail::to($email)->send(new \App\Mail\mymail());
         return $output;
     }
 
