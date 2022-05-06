@@ -69,7 +69,7 @@
                                                 <label for="">Select Course</label>
                                                 <select id="prospectus_course" onchange="check_semester(this.value)"
                                                     name="prospectus_course_name" class="form-control" required="">
-                                                    <option value="" selected disabled> Select Course </option>
+                                                    <option  selected disabled> Select Course </option>
                                                     @foreach ($data as $course)
                                                         <option value="{{ $course->course_id }}" selected="">
                                                             {{ $course->course_name }}
