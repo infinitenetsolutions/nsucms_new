@@ -294,7 +294,7 @@
             xmlhttp.onreadystatechange = function() {
                 document.getElementById('vaild_otp').style.display = 'block';
                 document.getElementById('prospectus_phone_err').innerHTML =
-                    '<smal class="text-success">Otp sended on ' + number +  ' and '+email+'</small>';
+                    '<smal class="text-success">Otp Sent on ' + number +  ' and '+email+'</small>';
             }
             xmlhttp.open("GET", window.location.href + "otp/" + number + "/" + email);
             xmlhttp.send();
