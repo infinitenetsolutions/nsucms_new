@@ -196,17 +196,20 @@ class EasebuzzController extends Controller
 
         $result = $easebuzzObj->easebuzzResponse($_POST);
         $result = json_decode($result);
+        $prospectus_student_id = $result->data->udf1;
+        $email = $result->data->email;
+        session(['student_id' => $prospectus_student_id, 'email' => $email]);
+
         if ($result->data->status == "success") {
             $net_debited_amount = $result->data->net_amount_debit;
             $easepayid = $result->data->easepayid;
             $txnid = $result->data->txnid;
-            $prospectus_student_id = $result->data->udf1;
+        
             $mode = $result->data->mode;
             $bank_name = $result->data->bank_name;
             $addedon = $result->data->addedon;
-            $email = $result->data->email;
+         
 
-            session(['student_id' => $prospectus_student_id, 'email' => $email]);
             $status = md5('visible');
             $payment_success = DB::table('tbl_prospectus')->where('id', $prospectus_student_id)->update([
                 'transaction_id' => $txnid,
