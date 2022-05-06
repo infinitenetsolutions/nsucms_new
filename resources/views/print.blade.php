@@ -9,6 +9,10 @@
                 margin-bottom: 0.25rem;
             }
 
+            .card-title {
+                margin-bottom: 0rem;
+            }
+
         </style>
         <div class="container">
             <!-- app invoice View Page -->
@@ -39,9 +43,9 @@
                                         <div class="col-2">
 
                                             <div class="invoice-action-btn ">
-                                                <a href=""> <button id="printbutton" onclick="printdata()"
-                                                        class="btn btn-success btn-sm ">
-                                                        <span>Print</span> </button> </a>
+                                                <button id="printbutton" onclick="printdata()"
+                                                    class="btn btn-success btn-sm ">
+                                                    <span>Print</span> </button>
                                             </div>
 
                                         </div>
@@ -49,7 +53,7 @@
                                 </div>
 
                             </div>
-                            <div class="card bg-dark p-1 mb-4 col-sm-12  ">
+                            <div class="card bg-dark p-1 mb-3 col-sm-12  ">
                                 <h5 class="card-title container  text-white">1. Program Details </h5>
                             </div>
                             <div class="row container ">
@@ -57,15 +61,20 @@
                                 <div class="col-4">
                                     <p><strong>Session</strong></p>
 
-                                    <p>{{ $data->prospectus_session }}</p>
+                                    <p><?php $session = DB::table('tbl_university_details')
+                                        ->where('university_details_id', $data->prospectus_session)
+                                        ->first();
+                                    echo explode('-', $session->university_details_academic_start_date)[0] . ' - ' . explode('-', $session->university_details_academic_end_date)[0];
+                                    ?></p>
                                 </div>
                                 <div class="col-4">
                                     <p><strong>Course</strong></p>
-                                    <p>{{ $data->prospectus_course_name }}</p>
+                                    <p>{{ DB::table('tbl_course')->where('course_id', $data->prospectus_course_name)->first()->course_name }}
+                                    </p>
                                 </div>
                             </div>
                             <div class="invoice-product-details">
-                                <div class="card bg-dark p-1 mb-4 col-sm-12 ">
+                                <div class="card bg-dark p-1 mb-3 col-sm-12 ">
                                     <h5 class="card-title container  text-white">2. Personal Details </h5>
                                 </div>
                                 <div class="row container">
@@ -110,7 +119,7 @@
 
                                 </div>
 
-                                <div class="card bg-dark p-1 mb-4 col-sm-12 ">
+                                <div class="card bg-dark p-1 mb-3 col-sm-12 ">
                                     <h5 class="card-title container  text-white">3. Address Details </h5>
                                 </div>
                                 <div class="row container">
@@ -143,7 +152,7 @@
                                 </div>
 
 
-                                <div class="card bg-dark p-1 mb-4 col-sm-12 ">
+                                <div class="card bg-dark p-1 mb-3 col-sm-12 ">
                                     <h5 class="card-title container  text-white">4. Payment Details </h5>
                                 </div>
                                 <div class="row container">
@@ -183,10 +192,16 @@
                 </div>
             </section>
             <!-- START RIGHT SIDEBAR NAV -->
-
-
-
-
         </div>
     @endslot
 </x-layout>
+
+<script>
+    function printdata() {
+        document.getElementsByClassName('bg-black')[0].style.display = "none"
+        document.getElementsByClassName('bg-black')[1].style.display = "none"
+        document.getElementById('printbutton').style.display = "none"
+
+        print()
+    }
+</script>

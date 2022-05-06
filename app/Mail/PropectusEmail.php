@@ -6,9 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-
-
-class mymail extends Mailable
+use Illuminate\Support\Facades\DB;
+class PropectusEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,8 +28,8 @@ class mymail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail from nsuniv.ac.in')
-            ->view('emails.otp');
+        $data = DB::table('tbl_prospectus')->find(session('student_id'));
+                // $data = DB::table('tbl_prospectus')->find(1);
+        return $this->subject('Mail from nsuniv.ac.in')->view('print', ['data' => $data]);
     }
-  
 }

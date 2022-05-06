@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Easebuzz\Easebuzz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class EasebuzzController extends Controller
 {
+
+
     public function store(Request $request)
     {
 
@@ -193,19 +196,17 @@ class EasebuzzController extends Controller
 
         $result = $easebuzzObj->easebuzzResponse($_POST);
         $result = json_decode($result);
-        echo "<pre>";
-        print_r($result->data);
-        echo "<pre>";
         if ($result->data->status == "success") {
             $net_debited_amount = $result->data->net_amount_debit;
             $easepayid = $result->data->easepayid;
-
             $txnid = $result->data->txnid;
             $prospectus_student_id = $result->data->udf1;
             $mode = $result->data->mode;
             $bank_name = $result->data->bank_name;
             $addedon = $result->data->addedon;
-            session('student_id', $prospectus_student_id);
+            $email = $result->data->email;
+
+            session(['student_id' => $prospectus_student_id, 'email' => $email]);
             $status = md5('visible');
             $payment_success = DB::table('tbl_prospectus')->where('id', $prospectus_student_id)->update([
                 'transaction_id' => $txnid,
@@ -219,17 +220,20 @@ class EasebuzzController extends Controller
                 'transaction_no' => $txnid,
             ]);
             if ($payment_success) {
-                redirect()->route('print');
+                return  redirect()->route('print');
             }
-            print_r($result->data);
         } else {
-            redirect()->route('prospectus');
+            return redirect()->route('print');
         }
     }
 
     public function print_form()
     {
-         $data = DB::table('tbl_prospectus')->find(12);
+         $data = DB::table('tbl_prospectus')->find(session('student_id'));
+        // $data = DB::table('tbl_prospectus')->find(1);
+
+        Mail::to(session('email'))->send(new \App\Mail\PropectusEmail());
         return view('print', ['data' => $data]);
+
     }
 }
