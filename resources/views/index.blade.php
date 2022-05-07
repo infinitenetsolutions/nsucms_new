@@ -66,7 +66,7 @@
                                                 <h5 class="-title   text-white">1. Program Details </h5>
                                             </div>
                                             <div class="form-group col-md-4 ">
-                                                <label for="">Select Course</label>
+                                                <label for="">Select Course <span class="text-danger" > * </span> </label>
                                                 <select id="prospectus_course" onchange="check_semester(this.value)"
                                                     name="prospectus_course_name" class="form-control" required="">
                                                     <option  selected disabled> Select Course </option>
