@@ -258,7 +258,7 @@
             document.getElementById('amount').value = data[0].prospectus_rate
             session = data[0].duration;
             document.getElementById('session').value = new Date().getFullYear() + ' - ' + (parseInt(new Date()
-                .getFullYear()) + session);
+                .getFullYear()) + Number(session));
         }
         xmlhttp.open("GET", window.location.href + "course/" + course);
         xmlhttp.send();
