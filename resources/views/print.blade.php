@@ -11,6 +11,7 @@
 
             .card-title {
                 margin-bottom: 0rem;
+                filter: none !important;
             }
 
         </style>
