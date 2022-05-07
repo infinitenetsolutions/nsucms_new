@@ -53,7 +53,7 @@
                     <div class="right__container">
                         <fieldset id="form2">
                             <div class="sub__title__container ">
-                                <p>Step 1/5</p>
+                                <p>Step 1/4</p>
                                 <h2>Let's start with prospectus number </h2>
                                 <p>Please fill the details below so that you have to go into the next step </p>
                             </div>
@@ -80,12 +80,12 @@
                                             </div>
 
                                             <div class="form-group col-md-4">
-                                                <label for="">Session</label>
+                                                <label for="">Session <span class="text-danger">*</span> </label>
                                                 <input readonly id="session" name="prospectus_session"
                                                     class="form-control" value="" placeholder="">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label for="">Amount</label>
+                                                <label for="">Amount <span class="text-danger">*</span></label>
                                                 <input readonly id="amount" class="form-control" value="" placeholder="">
                                             </div>
                                         </div>
@@ -98,18 +98,18 @@
                                             </div>
 
                                             <div class="form-group col-md-4">
-                                                <label for="">Applicant Name</label>
+                                                <label for="">Applicant Name <span class="text-danger">*</span></label>
                                                 <input id="prospectus_applicant_name" name="prospectus_applicant_name"
                                                     class="form-control" placeholder="Enter Name" type="text" required="">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label for="">Father's Name</label>
+                                                <label for="">Father's Name <span class="text-danger">*</span></label>
                                                 <input id="prospectus_fathers_name" name="prospectus_father_name"
                                                     class="form-control" placeholder="Father's Name" type="text"
                                                     required="">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label for="">Mother's Name</label>
+                                                <label for="">Mother's Name <span class="text-danger">*</span></label>
                                                 <input id="prospectus_mothers_name" name="prospectus_mother_name"
                                                     class="form-control" placeholder="Mother's Name" type="text"
                                                     required="">
@@ -117,10 +117,10 @@
                                             <div class="form-group col-md-4">
                                                 <label for="">Referred By</label>
                                                 <input type="text" id="" name="revert_by" placeholder="Counselor Name"
-                                                    class="form-control" value="" required="">
+                                                    class="form-control" value="">
                                             </div>
                                             <div class="form-group col-md-2">
-                                                <label for="">Select Gender</label>
+                                                <label for="">Select Gender <span class="text-danger">*</span></label>
                                                 <select id="prospectus_gender" name="prospectus_gender"
                                                     class="form-control" required="">
                                                     <option value="Male">Male</option>
@@ -129,35 +129,35 @@
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-2">
-                                                <label for="">Date Of Birth</label>
+                                                <label for="">Date Of Birth <span class="text-danger">*</span></label>
                                                 <input id="prospectus_dob" name="prospectus_dob" class="form-control"
                                                     placeholder="Enter DOB" type="date" required="">
                                             </div>
                                             <div class="form-group col-md-2">
-                                                <label for="">Postal Code</label>
+                                                <label for="">Postal Code <span class="text-danger">*</span></label>
                                                 <input onkeyup="check_pincode(this.value)" maxlength="6"
                                                     id="prospectus_postal_code" name="prospectus_postal_code"
                                                     class="form-control" placeholder="Enter Postal Code" type="text"
                                                     required="">
                                             </div>
                                             <div class="form-group col-md-2">
-                                                <label for="">Country</label>
+                                                <label for="">Country <span class="text-danger">*</span></label>
                                                 <input id="prospectus_country" name="prospectus_country"
                                                     class="form-control" value="" type="text" readonly="">
                                             </div>
                                             <div class="form-group col-md-2">
-                                                <label for=""> State</label>
+                                                <label for=""> State <span class="text-danger">*</span></label>
                                                 <input readonly id="prospectus_state" value="" class="form-control"
                                                     name="prospectus_state" />
 
                                             </div>
                                             <div class="form-group col-md-2">
-                                                <label for=""> City</label>
+                                                <label for=""> City <span class="text-danger">*</span></label>
                                                 <input id="prospectus_city" name="prospectus_city" class="form-control"
                                                     required="" />
                                             </div>
                                             <div class="form-group col-md-8">
-                                                <label for="">Address</label>
+                                                <label for="">Address <span class="text-danger">*</span></label>
                                                 <textarea id="prospectus_address" name="prospectus_address" class="form-control" placeholder="Enter Your Address"
                                                     required=""></textarea>
                                             </div>
@@ -170,18 +170,16 @@
                                             <div class=" bg-dark p-2 mb-4">
                                                 <h5 class="card-title   text-white">3. Varification Details </h5>
                                             </div>
-
                                             <div class="form-group col-md-4">
-                                                <label for="">Email Address</label>
+                                                <label for="">Email Address <span class="text-danger">*</span></label>
                                                 <input id="email" name="prospectus_emailid"
                                                     class="form-control" placeholder="Enter Email" type="email"
                                                     required="">
                                                 <small class="form-text text-muted">We'll never share your email with anyone
                                                     else.</small>
                                             </div>
-
                                             <div class="form-group col-md-4">
-                                                <label for="">Phone Number</label>
+                                                <label for="">Phone Number <span class="text-danger">*</span></label>
                                                 <input id="prospectus_phone" name="mobile"
                                                     onkeyup="check_number(this.value)" class="form-control"
                                                     placeholder="Enter Phone Number" type="text" maxlength="10"
@@ -189,11 +187,8 @@
                                                 <small id="prospectus_phone_err" class="form-text text-muted text-success">
                                                 </small>
                                             </div>
-
-
-
                                             <div class="form-group col-md-4" id="vaild_otp" style="display: none">
-                                                <label for="">OTP</label>
+                                                <label for="">OTP <span class="text-danger">*</span></label>
                                                 <input id="prospectus_otp" class="form-control"
                                                     placeholder="Enter 6 Digit OTP" type="text" maxlength="6" minlength="6">
                                                 <small id="prospectus_otp_err"
@@ -216,13 +211,11 @@
                                         <div class="col-sm-4 mt-4">
                                             <button type="submit" class="btn bg-dark btn-warning  "><i
                                                     class="fa fa-paper-plane" aria-hidden="true"></i>
-
                                                 Next</button>
                                             <a href="already" class="btn btn-secondary "><i
                                                     class="fa fa-angle-double-right"></i> Already
                                                 Apply</a>
                                         </div>
-
                                     </div>
                                     <div class="form-group  col-md-12">
                                         <span style="color:#c70013;"><b>Note : </b>If you are facing some Technical Issues
@@ -230,7 +223,6 @@
                                             form submission, Feel Free to contact us on this number - +91-933 483 3167,
                                             +91-938 681
                                             7857</span>
-
                                     </div>
                                 </form>
                             </div>
@@ -240,13 +232,6 @@
             </div>
             <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         </section>
-
-
-
-
-
-
-
     @endslot
 </x-layout>
 
