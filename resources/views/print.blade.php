@@ -61,10 +61,11 @@
                                 <div class="col-4">
                                     <p><strong>Session</strong></p>
 
-                                    <p><?php $session = DB::table('tbl_university_details')
-                                        ->where('university_details_id', $data->prospectus_session)
-                                        ->first();
-                                    echo explode('-', $session->university_details_academic_start_date)[0] . ' - ' . explode('-', $session->university_details_academic_end_date)[0];
+                                    <p><?php // $session = DB::table('tbl_university_details')
+                                        //->where('university_details_id', $data->prospectus_session)
+                                        //->first();
+                                    //echo explode('-', $session->university_details_academic_start_date)[0] . ' - ' . explode('-', $session->university_details_academic_end_date)[0];
+                                    echo $data->prospectus_session;
                                     ?></p>
                                 </div>
                                 <div class="col-4">
