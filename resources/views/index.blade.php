@@ -71,7 +71,7 @@
                                                     name="prospectus_course_name" class="form-control" required="">
                                                     <option  selected disabled> Select Course </option>
                                                     @foreach ($data as $course)
-                                                        <option value="{{ $course->course_id }}" selected="">
+                                                        <option value="{{ $course->course_id }}" >
                                                             {{ $course->course_name }}
                                                         </option>
                                                     @endforeach
