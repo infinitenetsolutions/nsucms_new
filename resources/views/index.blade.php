@@ -57,6 +57,17 @@
                                 <h2>Let's start with prospectus number </h2>
                                 <p>Please fill the details below so that you have to go into the next step </p>
                             </div>
+                            @if(session('error'))
+
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    alert  </strong>  {{ session('error') }}
+                              
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                           
+                            @endif
                             <div class="input__container prospectus">
                                 <form method="POST" action="{{ route('prospectus') }}">
                                     @csrf
@@ -68,7 +79,7 @@
                                             <div class="form-group col-md-4 ">
                                                 <label for="">Select Course <span class="text-danger" > * </span> </label>
                                                 <select id="prospectus_course" onchange="check_semester(this.value)"
-                                                    name="prospectus_course_name" class="form-control" required="">
+                                                    name="prospectus_course_name" class="form-control" required>
                                                     <option  selected disabled> Select Course </option>
                                                     @foreach ($data as $course)
                                                         <option value="{{ $course->course_id }}" >
@@ -81,12 +92,12 @@
 
                                             <div class="form-group col-md-4">
                                                 <label for="">Session <span class="text-danger">*</span> </label>
-                                                <input readonly id="session" name="prospectus_session"
+                                                <input required readonly id="session" name="prospectus_session"
                                                     class="form-control" value="" placeholder="">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Amount <span class="text-danger">*</span></label>
-                                                <input readonly id="amount" class="form-control" value="" placeholder="">
+                                                <input required readonly id="amount" class="form-control" value="" placeholder="">
                                             </div>
                                         </div>
                                     </div>
@@ -100,29 +111,29 @@
                                             <div class="form-group col-md-4">
                                                 <label for="">Applicant Name <span class="text-danger">*</span></label>
                                                 <input id="prospectus_applicant_name" name="prospectus_applicant_name"
-                                                    class="form-control" placeholder="Enter Name" type="text" required="">
+                                                    class="form-control" placeholder="Enter Name" type="text" required>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Father's Name <span class="text-danger">*</span></label>
                                                 <input id="prospectus_fathers_name" name="prospectus_father_name"
                                                     class="form-control" placeholder="Father's Name" type="text"
-                                                    required="">
+                                                    required>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Mother's Name <span class="text-danger">*</span></label>
                                                 <input id="prospectus_mothers_name" name="prospectus_mother_name"
                                                     class="form-control" placeholder="Mother's Name" type="text"
-                                                    required="">
+                                                    required>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Referred By</label>
-                                                <input type="text" id="" name="revert_by" placeholder="Counselor Name"
+                                                <input required type="text" id="" name="revert_by" placeholder="Counselor Name"
                                                     class="form-control" value="">
                                             </div>
                                             <div class="form-group col-md-2">
                                                 <label for="">Select Gender <span class="text-danger">*</span></label>
                                                 <select id="prospectus_gender" name="prospectus_gender"
-                                                    class="form-control" required="">
+                                                    class="form-control" required>
                                                     <option value="Male">Male</option>
                                                     <option value="Female">Female</option>
                                                     <option value="Other">Other</option>
@@ -131,14 +142,14 @@
                                             <div class="form-group col-md-2">
                                                 <label for="">Date Of Birth <span class="text-danger">*</span></label>
                                                 <input id="prospectus_dob" name="prospectus_dob" class="form-control"
-                                                    placeholder="Enter DOB" type="date" required="">
+                                                    placeholder="Enter DOB" type="date" required>
                                             </div>
                                             <div class="form-group col-md-2">
                                                 <label for="">Postal Code <span class="text-danger">*</span></label>
                                                 <input onkeyup="check_pincode(this.value)" maxlength="6"
                                                     id="prospectus_postal_code" name="prospectus_postal_code"
                                                     class="form-control" placeholder="Enter Postal Code" type="text"
-                                                    required="">
+                                                    required>
                                             </div>
                                             <div class="form-group col-md-2">
                                                 <label for="">Country <span class="text-danger">*</span></label>
@@ -147,19 +158,19 @@
                                             </div>
                                             <div class="form-group col-md-2">
                                                 <label for=""> State <span class="text-danger">*</span></label>
-                                                <input readonly id="prospectus_state" value="" class="form-control"
+                                                <input required readonly id="prospectus_state" value="" class="form-control"
                                                     name="prospectus_state" />
 
                                             </div>
                                             <div class="form-group col-md-2">
                                                 <label for=""> City <span class="text-danger">*</span></label>
                                                 <input id="prospectus_city" name="prospectus_city" class="form-control"
-                                                    required="" />
+                                                    required />
                                             </div>
                                             <div class="form-group col-md-8">
                                                 <label for="">Address <span class="text-danger">*</span></label>
                                                 <textarea id="prospectus_address" name="prospectus_address" class="form-control" placeholder="Enter Your Address"
-                                                    required=""></textarea>
+                                                    required></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -174,7 +185,7 @@
                                                 <label for="">Email Address <span class="text-danger">*</span></label>
                                                 <input id="email" name="prospectus_emailid"
                                                     class="form-control" placeholder="Enter Email" type="email"
-                                                    required="">
+                                                    required>
                                                 <small class="form-text text-muted">We'll never share your email with anyone
                                                     else.</small>
                                             </div>
@@ -183,18 +194,20 @@
                                                 <input id="prospectus_phone" name="mobile"
                                                     onkeyup="check_number(this.value)" class="form-control"
                                                     placeholder="Enter Phone Number" type="text" maxlength="10"
-                                                    minlength="10" required="">
+                                                    minlength="10" required>
                                                 <small id="prospectus_phone_err" class="form-text text-muted text-success">
                                                 </small>
                                             </div>
                                             <div class="form-group col-md-4" id="vaild_otp" style="display: none">
                                                 <label for="">OTP <span class="text-danger">*</span></label>
-                                                <input id="prospectus_otp" class="form-control"
+                                                <input required id="prospectus_otp" name="prospectus_otp" class="form-control"
                                                     placeholder="Enter 6 Digit OTP" type="text" maxlength="6" minlength="6">
                                                 <small id="prospectus_otp_err"
                                                     class="form-text text-muted color-orange">Please
                                                     Enter Your OTP.</small>
                                             </div>
+                                         
+
                                         </div>
                                     </div>
                                     <div class="  mb-3">

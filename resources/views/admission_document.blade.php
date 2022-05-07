@@ -1,13 +1,9 @@
 <x-layout>
     @slot('title', 'Netaji Subhas University')
-
     @slot('body')
-
-
         <div class="bg-dark text-center"><br>
             <img class="logo" src="{{ asset('img/logo.png') }}" alt="NSU">
         </div>
-
         <section class="contact-section ">
             <div class="form__container">
                 <div class="title__container">
@@ -119,7 +115,6 @@
                                             </div>
                                         </div>
                                     </div>
-                        
                                     <div class="col-md-6">
                                         <button type="submit" id="admission_button" class="btn btn-warning">Submit</button>
                                     </div>

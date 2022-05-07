@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+
 class ProspectusController extends Controller
 {
 
@@ -19,11 +21,19 @@ class ProspectusController extends Controller
     // storing the data of the user 
     public function store(Request $request)
     {
-        $prospectus = DB::table('tbl_prospectus')->insertGetId($request->except('_token'));
-        session(['student_id' => $prospectus]);
+        if ($request->prospectus_otp == session('otp')) {
+            try {
 
-        // redirecting to the confirmation page
-        return redirect()->route('prospectus.confirmation');
+                $prospectus = DB::table('tbl_prospectus')->insertGetId($request->except(['_token', 'prospectus_otp']));
+                session(['student_id' => $prospectus]);
+                // redirecting to the confirmation page
+                return redirect()->route('prospectus.confirmation');
+            } catch (Exception $e) {
+                return redirect()->back()->with('error', $e->getMessage());
+            }
+        } else {
+            return redirect()->back()->with('error', 'Please Enter correnct otp');
+        }
     }
 
     // for showing the course it's call throw the ajax
@@ -42,7 +52,7 @@ class ProspectusController extends Controller
 
 
 
-    public function send_otp($mobile_number,$email)
+    public function send_otp($mobile_number, $email)
     {
         $otp = rand(100000, 999999);
         session(['otp' => $otp, 'phone' => $mobile_number]);
