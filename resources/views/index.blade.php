@@ -127,7 +127,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="">Referred By</label>
-                                                <input required type="text" id="" name="revert_by" placeholder="Counselor Name"
+                                                <input  type="text" id="" name="revert_by" placeholder="Counselor Name"
                                                     class="form-control" value="">
                                             </div>
                                             <div class="form-group col-md-2">
@@ -201,7 +201,7 @@
                                             <div class="form-group col-md-4" id="vaild_otp" style="display: none">
                                                 <label for="">OTP <span class="text-danger">*</span></label>
                                                 <input required id="prospectus_otp" name="prospectus_otp" class="form-control"
-                                                    placeholder="Enter 6 Digit OTP" type="text" maxlength="6" minlength="6">
+                                                    placeholder="Enter 6 Digit OTP" type="number" maxlength="6" minlength="6">
                                                 <small id="prospectus_otp_err"
                                                     class="form-text text-muted color-orange">Please
                                                     Enter Your OTP.</small>

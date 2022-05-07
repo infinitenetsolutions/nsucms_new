@@ -32,7 +32,7 @@ class ProspectusController extends Controller
                 return redirect()->back()->with('error', $e->getMessage());
             }
         } else {
-            return redirect()->back()->with('error', 'Please Enter correnct otp');
+            return redirect()->back()->with('error', 'Please Enter Correct otp');
         }
     }
 
