@@ -159,30 +159,30 @@
                                 <div class="row container">
                                     <div class="col-sm-4" style="width: 33.33%">
                                         <p><strong>Payment mode</strong></p>
-                                        <p>{{ $data->prospectus_postal_code }}</p>
+                                        <p>{{ $data->prospectus_payment_mode }}</p>
                                     </div>
                                     <div class="col-sm-4" style="width: 33.33%">
                                         <p><strong>Amount </strong></p>
-                                        <p>{{ $data->prospectus_postal_code }}</p>
+                                        <p>{{ $data->prospectus_rate }}</p>
                                     </div>
                                     <div class="col-sm-4" style="width: 33.33%">
                                         <p><strong>Deposit To</strong></p>
-                                        <p>{{ $data->prospectus_postal_code }}</p>
+                                        <p>{{ $data->prospectus_deposit_to }}</p>
                                     </div>
 
                                 </div>
                                 <div class="row container">
                                     <div class="col-sm-4" style="width: 33.33%">
                                         <p><strong>Transaction Date</strong></p>
-                                        <p>{{ $data->prospectus_postal_code }}</p>
+                                        <p>{{ $data->transaction_date }}</p>
                                     </div>
                                     <div class="col-sm-4" style="width: 33.33%">
                                         <p><strong>Transaction Id</strong></p>
-                                        <p>{{ $data->prospectus_postal_code }}</p>
+                                        <p>{{ $data->transaction_id }}</p>
                                     </div>
                                     <div class="col-sm-4" style="width: 33.33%">
                                         <p><strong>Easebuzz Id</strong></p>
-                                        <p>{{ $data->prospectus_postal_code }}</p>
+                                        <p>{{ $data->easebuzz_id }}</p>
                                     </div>
                                 </div>
 
